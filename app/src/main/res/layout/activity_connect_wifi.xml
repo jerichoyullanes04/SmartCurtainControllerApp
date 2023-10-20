@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ConnectWifiActivity"
+    android:padding="20dp"
+    android:orientation="vertical"
+    android:background="@color/background_color">
+
+    <ImageView
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back_icon" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:text="Connect your android phone to the Smart Curtain’s Wi-Fi Access Point"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:text="1. Turn on your WiFi and connect your phone to the Smart Curtain Hotspot."/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:text="2. Enter the correct password and go back."/>
+
+
+    <Button
+        android:id="@+id/btnConnectWifi"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="400dp"
+        android:background="@drawable/button_round_corners"
+        android:text="Connect"
+        android:textColor="#FAF4F4"
+        android:textSize="12sp"
+        />
+
+</LinearLayout>

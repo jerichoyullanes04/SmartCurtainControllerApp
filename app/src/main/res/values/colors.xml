@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF2424</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#191919</color>
+    <color name="white">#FAF4F4</color>
+
+    <color name="text_color">#191919</color>
+
+    <!-- BACKGROUND COLORS -->
+    <color name="background_color">#E4E4E4</color>
+
+    <color name="background_popup">#D9D9D9</color>
+
+    <color name="background_white">#FAF4F4</color>
+    <!-- BUTTON COLORS -->
+
+    <!-- BOTTOM NAVIGATION BAR -->
+    <color name="selected_icon_color">#FF2424</color> <!-- Red for selected icons -->
+    <color name="default_icon_color">#191919</color> <!-- Black for unselected icons -->
+    <color name="selected_text_color">#FF2424</color> <!-- Red for selected text -->
+    <color name="default_text_color">#191919</color> <!-- Black for unselected text -->
+
+</resources>

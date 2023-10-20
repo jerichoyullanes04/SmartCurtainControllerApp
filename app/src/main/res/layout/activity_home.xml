@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity"
+    android:background="@color/background_color"
+    android:orientation="vertical"
+    android:id="@+id/home_fragment_layout">
+
+
+    <TextView
+        android:text="My Smart Curtain"
+        android:textSize="16sp"
+        android:textColor="#191919"
+        android:paddingTop="50px"
+        android:paddingLeft="50px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10px"
+        android:layout_marginTop="350px"
+        android:src="@drawable/not_connected_icon" />
+
+    <TextView
+        android:text="No Curtain Connected"
+        android:textSize="14sp"
+        android:textColor="#808080"
+        android:padding="10px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/btnConnect"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="25px"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:background="@drawable/button_round_corners"
+        android:text="Connect Curtain"
+        android:textColor="#FAF4F4"
+        android:textSize="12sp"
+        />
+
+
+</LinearLayout>

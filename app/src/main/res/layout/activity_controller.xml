@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ControllerActivity"
+    android:orientation="vertical"
+    android:background="@color/background_color">
+
+    <TextView
+        android:text="My Smart Curtain"
+        android:textSize="16sp"
+        android:textColor="#191919"
+        android:paddingTop="50px"
+        android:paddingLeft="50px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/rounded_linear_layout"
+        android:elevation="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:text="Outdoor Temperature"
+            android:textSize="16sp"
+            android:textColor="#808080"
+            android:paddingTop="30px"
+            android:paddingLeft="50px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="50px"
+            android:text="32°C"
+            android:textColor="#333333"
+            android:textSize="52sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="50px"
+                    android:paddingTop="10dp"
+                    android:text="71.3%"
+                    android:textColor="#333333"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="50px"
+                    android:text="Outdoor Humidity"
+                    android:textColor="#808080"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="50px"
+                    android:paddingTop="10dp"
+                    android:text="Low"
+                    android:textColor="#333333"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="50px"
+                    android:text="Sunlight Intensity"
+                    android:textColor="#808080"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rounded_linear_layout"
+        android:elevation="30dp"
+        android:orientation="vertical">
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rounded_linear_layout"
+        android:elevation="30dp">
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnOpen"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:background="@drawable/button_round_corners"
+        android:text="Open Curtain"
+        android:textColor="#FAF4F4"
+        android:textSize="12sp"
+        android:elevation="30dp"
+        />
+
+    <Button
+        android:id="@+id/btnClose"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="25px"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:background="@drawable/button_round_corners"
+        android:text="Close Curtain"
+        android:textColor="#FAF4F4"
+        android:textSize="12sp"
+        android:elevation="30dp"
+        />
+
+</LinearLayout>
