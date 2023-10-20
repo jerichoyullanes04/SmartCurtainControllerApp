@@ -32,7 +32,7 @@
         android:layout_marginLeft="35dp"
         android:layout_marginTop="40dp"
         android:textColor="@color/black"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:text="1. Allow Bluetooth Permission"/>
 
     <TextView
@@ -41,21 +41,20 @@
         android:layout_marginLeft="35dp"
         android:layout_marginTop="40dp"
         android:textColor="@color/black"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:text="2. Turn on your Bluetooth and connect your phone to  Smart Curtain BLE."/>
 
 
     <Button
         android:id="@+id/btnConnectBluetooth"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp"
         android:layout_marginTop="400dp"
+        android:layout_marginRight="100dp"
         android:background="@drawable/button_round_corners"
         android:text="Connect"
         android:textColor="#FAF4F4"
-        android:textSize="12sp"
-        />
+        android:textSize="16sp" />
 
 </LinearLayout>

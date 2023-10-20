@@ -11,7 +11,7 @@
 
     <TextView
         android:text="My Smart Curtain"
-        android:textSize="16sp"
+        android:textSize="26sp"
         android:textColor="#191919"
         android:paddingTop="50px"
         android:paddingLeft="50px"
@@ -28,7 +28,7 @@
 
     <TextView
         android:text="No Curtain Connected"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textColor="#808080"
         android:padding="10px"
         android:layout_width="match_parent"
@@ -46,7 +46,7 @@
         android:background="@drawable/button_round_corners"
         android:text="Connect Curtain"
         android:textColor="#FAF4F4"
-        android:textSize="12sp"
+        android:textSize="16sp"
         />
 
 

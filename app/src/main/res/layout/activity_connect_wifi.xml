@@ -32,8 +32,9 @@
         android:layout_marginLeft="35dp"
         android:layout_marginTop="40dp"
         android:textColor="@color/black"
-        android:textSize="14sp"
-        android:text="1. Turn on your WiFi and connect your phone to the Smart Curtain Hotspot."/>
+        android:textSize="16sp"
+        android:text="1. Turn on your WiFi and connect your phone
+        to the Smart Curtain Hotspot."/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,7 +42,7 @@
         android:layout_marginLeft="35dp"
         android:layout_marginTop="40dp"
         android:textColor="@color/black"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:text="2. Enter the correct password and go back."/>
 
 
@@ -55,7 +56,7 @@
         android:background="@drawable/button_round_corners"
         android:text="Connect"
         android:textColor="#FAF4F4"
-        android:textSize="12sp"
+        android:textSize="16sp"
         />
 
 </LinearLayout>
