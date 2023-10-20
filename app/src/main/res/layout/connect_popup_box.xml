@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="260dp"
+        android:layout_height="250dp"
         android:orientation="vertical"
         android:background="@drawable/connect_popup_background"
         android:layout_marginRight="40dp"
@@ -21,7 +21,8 @@
             android:id="@+id/btn_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/close_icon" />
+            android:src="@drawable/close_icon"
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -36,30 +37,31 @@
         <Button
             android:id="@+id/btnWifi"
             android:layout_width="150dp"
-            android:layout_height="45dp"
+            android:layout_height="48dp"
             android:layout_gravity="center"
-            android:layout_marginTop="25px"
+            android:layout_marginTop="15dp"
             android:layout_marginLeft="100dp"
             android:layout_marginRight="100dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/button_round_corners"
             android:text="Wi-Fi"
             android:textColor="#FAF4F4"
-            android:textSize="12sp"
+            android:textSize="14sp"
+            android:textStyle="bold"
             />
 
         <Button
             android:id="@+id/btnBluetooth"
             android:layout_width="150dp"
-            android:layout_height="45dp"
+            android:layout_height="48dp"
             android:layout_gravity="center"
-            android:layout_marginTop="25px"
             android:layout_marginLeft="100dp"
             android:layout_marginRight="100dp"
             android:background="@drawable/button_round_corners"
             android:text="Bluetooth"
             android:textColor="#FAF4F4"
-            android:textSize="12sp" />
+            android:textSize="14sp"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 
