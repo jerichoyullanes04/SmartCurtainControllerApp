@@ -2,7 +2,9 @@ package com.example.smartcurtaincontrollerapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -43,6 +45,7 @@ public class ConnectWifiActivity extends AppCompatActivity {
     private void openWifiSettings() {
         // Create an Intent to open the Wi-Fi settings
         Intent wifiSettingsIntent = new Intent(android.provider.Settings.ACTION_WIFI_SETTINGS);
+
 
         // Start the Wi-Fi settings activity
         startActivity(wifiSettingsIntent);

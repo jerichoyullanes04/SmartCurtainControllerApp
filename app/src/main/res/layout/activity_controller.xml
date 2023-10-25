@@ -40,6 +40,7 @@
             />
 
         <TextView
+            android:id="@+id/txtTemperature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="50px"
@@ -66,6 +67,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txtHumidity"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingLeft="50px"
@@ -91,6 +93,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txtSunlight"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingLeft="50px"
@@ -137,6 +140,7 @@
 
 
         <TextView
+            android:id="@+id/txtConnection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="50px"
@@ -184,6 +188,7 @@
 
 
         <TextView
+            android:id="@+id/txtMode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="50px"

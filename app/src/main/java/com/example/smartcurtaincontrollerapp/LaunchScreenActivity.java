@@ -16,11 +16,11 @@ public class LaunchScreenActivity extends AppCompatActivity {
         new Handler().postDelayed(new  Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(LaunchScreenActivity.this, HomeActivity.class);
+                Intent intent = new Intent(LaunchScreenActivity.this, ControllerActivity.class);
                 startActivity(intent); // Add this line to start the new activity
                 finish(); // Add this line to finish the current activity
             }
-        }, 2000);
+        }, 1500);
 
     }
 }
