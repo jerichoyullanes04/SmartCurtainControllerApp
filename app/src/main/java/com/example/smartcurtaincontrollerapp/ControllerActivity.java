@@ -11,7 +11,9 @@ import android.net.NetworkRequest;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -25,8 +27,11 @@ import okhttp3.Response;
 
 public class ControllerActivity extends AppCompatActivity {
 
-    Button btnOpen, btnClose, btnSwitchMode, btnDisconnect;
+    private Button btnOpen, btnClose, btnSwitchMode, btnDisconnect;
     TextView txtTemperature, txtHumidity, txtMode, txtConnection;
+
+    private Handler handler = new Handler();
+    private boolean isRepeating = false;
 
     private OkHttpClient client = new OkHttpClient();
 
@@ -60,18 +65,41 @@ public class ControllerActivity extends AppCompatActivity {
                 }
             }
         });
-        boolean pressed = true;
-        btnOpen.setOnClickListener(new View.OnClickListener() {
+        btnOpen.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
-                sendCommand("open");
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        // Button is pressed, start the repeating action
+                        isRepeating = true;
+                        repeatOpen();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        // Button is released, stop the repeating action
+                        isRepeating = false;
+                        break;
+                }
+                return true; // Consume the event
             }
         });
 
-        btnClose.setOnClickListener(new View.OnClickListener() {
+        btnClose.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
-                sendCommand("close");
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        // Button is pressed, start the repeating action
+                        isRepeating = true;
+                        repeatClose();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        // Button is released, stop the repeating action
+                        isRepeating = false;
+                        break;
+                }
+                return true; // Consume the event
             }
         });
 
@@ -91,6 +119,42 @@ public class ControllerActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void repeatOpen() {
+        if (isRepeating) {
+            // Your action to be repeated goes here
+            // For example, you can show a toast
+            //Toast.makeText(this, "Action repeated", Toast.LENGTH_SHORT).show();
+
+            sendCommand("open");
+
+            // Schedule the next action after a delay (e.g., 500ms)
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    repeatOpen();
+                }
+            }, 500); // Change the delay as needed
+        }
+    }
+
+    private void repeatClose() {
+        if (isRepeating) {
+            // Your action to be repeated goes here
+            // For example, you can show a toast
+            //Toast.makeText(this, "Action repeated", Toast.LENGTH_SHORT).show();
+
+            sendCommand("close");
+
+            // Schedule the next action after a delay (e.g., 500ms)
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    repeatClose();
+                }
+            }, 500); // Change the delay as needed
+        }
     }
 
     private void disconnectFromWifi() {
