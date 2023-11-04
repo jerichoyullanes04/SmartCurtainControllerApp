@@ -2,12 +2,16 @@ package com.example.smartcurtaincontrollerapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
 import android.net.NetworkRequest;
+import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,11 +31,15 @@ import okhttp3.Response;
 
 public class ControllerActivity extends AppCompatActivity {
 
-    private Button btnOpen, btnClose, btnSwitchMode, btnDisconnect;
+    private Button btnOpen, btnClose, btnSwitchMode, btnDisconnect, txtRES;
+    private BroadcastReceiver wifiReceiver;
+
     TextView txtTemperature, txtHumidity, txtMode, txtConnection;
 
     private Handler handler = new Handler();
     private boolean isRepeating = false;
+
+    private WifiManager wifiManager;
 
     private OkHttpClient client = new OkHttpClient();
 
@@ -44,13 +52,34 @@ public class ControllerActivity extends AppCompatActivity {
         btnOpen = findViewById(R.id.btnOpen);
         btnClose = findViewById(R.id.btnClose);
         btnSwitchMode = findViewById(R.id.btnSwitchMode);
-        btnDisconnect = findViewById(R.id.btnDisconnect);
+//        btnDisconnect = findViewById(R.id.btnDisconnect);
 
         // Initialize TextView
         txtTemperature = findViewById(R.id.txtTemperature);
         txtHumidity = findViewById(R.id.txtHumidity);
         txtMode = findViewById(R.id.txtMode);
         txtConnection = findViewById(R.id.txtConnection);
+
+        wifiReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (WifiManager.NETWORK_STATE_CHANGED_ACTION.equals(intent.getAction())) {
+                    NetworkInfo networkInfo = intent.getParcelableExtra(WifiManager.EXTRA_NETWORK_INFO);
+                    if (networkInfo != null && networkInfo.isConnected()) {
+                        WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+                        String ipAddress = intToIp(wifiInfo.getIpAddress());
+                        if ("192.168.4.2".equals(ipAddress)) {
+                            txtConnection.setText("Connected to Smart Curtain");
+                        } else {
+                            txtConnection.setText("Connected to other Wi-Fi");
+                        }
+                    } else {
+                        txtConnection.setText("Not Connected");
+                    }
+                }
+            }
+        };
 
         ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkRequest.Builder builder = new NetworkRequest.Builder();
@@ -111,14 +140,28 @@ public class ControllerActivity extends AppCompatActivity {
             }
         });
 
-        btnDisconnect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                disconnectFromWifi();
-                //startActivity(new Intent(ControllerActivity.this  , HomeActivity.class));
-            }
-        });
+    }
 
+// CUSTOM DEFINED FUNCTIONS
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IntentFilter intentFilter = new IntentFilter(WifiManager.NETWORK_STATE_CHANGED_ACTION);
+        registerReceiver(wifiReceiver, intentFilter);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(wifiReceiver);
+    }
+
+    private String intToIp(int ipAddress) {
+        return ((ipAddress & 0xFF) + "." +
+                ((ipAddress >> 8) & 0xFF) + "." +
+                ((ipAddress >> 16) & 0xFF) + "." +
+                ((ipAddress >> 24) & 0xFF));
     }
 
     private void repeatOpen() {
@@ -135,7 +178,7 @@ public class ControllerActivity extends AppCompatActivity {
                 public void run() {
                     repeatOpen();
                 }
-            }, 500); // Change the delay as needed
+            }, 10); // Change the delay as needed
         }
     }
 
@@ -153,14 +196,7 @@ public class ControllerActivity extends AppCompatActivity {
                 public void run() {
                     repeatClose();
                 }
-            }, 500); // Change the delay as needed
-        }
-    }
-
-    private void disconnectFromWifi() {
-        WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        if (wifiManager != null) {
-            wifiManager.disconnect();
+            }, 100); // Change the delay as needed
         }
     }
 
@@ -182,12 +218,12 @@ public class ControllerActivity extends AppCompatActivity {
                     cleanResponse.trim();
                     Log.d("Response  = ", cleanResponse);
 
-//                    runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            txtRES.setText(cleanResponse);
-//                        }
-//                    });
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            txtMode.setText(cleanResponse);
+                        }
+                    });
 
                 } catch (IOException e) {
                     e.printStackTrace();
