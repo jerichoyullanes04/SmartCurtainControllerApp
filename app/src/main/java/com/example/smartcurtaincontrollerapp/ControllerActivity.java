@@ -178,7 +178,7 @@ public class ControllerActivity extends AppCompatActivity {
                 public void run() {
                     repeatOpen();
                 }
-            }, 10); // Change the delay as needed
+            }, 100); // Change the delay as needed
         }
     }
 
