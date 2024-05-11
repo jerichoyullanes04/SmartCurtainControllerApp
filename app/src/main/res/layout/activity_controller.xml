@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="50px"
-            android:text="32°C"
+            android:text="00°C"
             android:textColor="#333333"
             android:textSize="52sp" />
 
@@ -72,7 +72,7 @@
                     android:layout_height="match_parent"
                     android:paddingLeft="50px"
                     android:paddingTop="10dp"
-                    android:text="71.3%"
+                    android:text="00.0%"
                     android:textColor="#333333"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
