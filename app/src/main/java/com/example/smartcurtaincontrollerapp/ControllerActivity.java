@@ -22,9 +22,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.IOException;
-
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -43,6 +41,8 @@ public class ControllerActivity extends AppCompatActivity {
 
     private OkHttpClient client = new OkHttpClient();
 
+    private Runnable runnable;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,13 +52,15 @@ public class ControllerActivity extends AppCompatActivity {
         btnOpen = findViewById(R.id.btnOpen);
         btnClose = findViewById(R.id.btnClose);
         btnSwitchMode = findViewById(R.id.btnSwitchMode);
-//        btnDisconnect = findViewById(R.id.btnDisconnect);
+        // btnDisconnect = findViewById(R.id.btnDisconnect);
 
         // Initialize TextView
         txtTemperature = findViewById(R.id.txtTemperature);
         txtHumidity = findViewById(R.id.txtHumidity);
         txtMode = findViewById(R.id.txtMode);
         txtConnection = findViewById(R.id.txtConnection);
+
+        scheduleTask();
 
         wifiReceiver = new BroadcastReceiver() {
             @Override
@@ -142,6 +144,31 @@ public class ControllerActivity extends AppCompatActivity {
 
     }
 
+    private void scheduleTask() {
+
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                // Your periodic task goes here
+                // For example, show a toast message
+                humidityCmd("humidity");
+                temperatureCmd("temperture");
+                // Schedule the task again after 20 seconds
+                handler.postDelayed(this, 1000); // 20 seconds in milliseconds
+            }
+        };
+
+        // Schedule the initial task with a delay of 20 seconds
+        handler.postDelayed(runnable, 1000);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Remove the callbacks to prevent memory leaks
+        handler.removeCallbacks(runnable);
+    }
+
 // CUSTOM DEFINED FUNCTIONS
 
     @Override
@@ -222,6 +249,70 @@ public class ControllerActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             txtMode.setText(cleanResponse);
+                        }
+                    });
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    public void temperatureCmd(String cmd) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String command = "http://192.168.4.1/" + cmd;
+                Log.d("Command----", command);
+                Request request = new Request.Builder().url(command).build();
+                try {
+                    Response response = client.newCall(request).execute();
+                    String myResponse = response.body().string();
+                    final String cleanResponse = myResponse.replaceAll("\\<.*?\\>", ""); // remove HTML tags
+                    cleanResponse.replace("\n", ""); // remove all new line characters
+                    cleanResponse.replace("\r", ""); // remove all carriage characters
+                    cleanResponse.replace(" ", ""); // removes all space characters
+                    cleanResponse.replace("\t", ""); // removes all tab characters
+                    cleanResponse.trim().replace("humidity", "");
+                    cleanResponse.replace("HTTP/1.1 200 OK\n" +
+                            "Content-type:text/html", "");
+                    Log.d("Response  = ", cleanResponse);
+
+                    String result = String.valueOf(cleanResponse.charAt(14)).concat(String.valueOf(cleanResponse.charAt(15)).concat(String.valueOf(cleanResponse.charAt(16))));
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            txtTemperature.setText(String.valueOf(result.concat("°F")));
+                        }
+                    });
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    public void humidityCmd(String cmd) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String command = "http://192.168.4.1/" + cmd;
+                Log.d("Command----", command);
+                Request request = new Request.Builder().url(command).build();
+                try {
+                    Response response = client.newCall(request).execute();
+                    String myResponse = response.body().string();
+                    final String cleanResponse = myResponse.replaceAll("\\<.*?\\>", ""); // remove HTML tags
+
+                    String result = String.valueOf(cleanResponse.charAt(11)).concat(String.valueOf(cleanResponse.charAt(12)).concat(String.valueOf(cleanResponse.charAt(13))).concat("%"));
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            txtHumidity.setText(result);
                         }
                     });
 
